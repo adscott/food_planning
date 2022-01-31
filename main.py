@@ -18,7 +18,8 @@ food_items = set([
     FoodItem("Beef Jerky", 180, 1130 * 1.8),
     FoodItem("Dried Mushrooms", 40, 0),
     FoodItem("Home Coffee", 0, 0),
-    FoodItem("Home Porridge", 0, 500),
+    FoodItem("Home Porridge", 0, 1000),
+    FoodItem("Newcastle Dinner", 0, 3000),
     FoodItem("Nut Bar", 35, 750),
     FoodItem("Snickers", 50, 1030),
     FoodItem("Spicy Noodle Pack", 85, 1640),
@@ -45,6 +46,7 @@ sections = [
                     Meal("Dinner", ["Back Country Beef Teriyaki"]),
                 ]),
                 Day(date(2022, 2, 5), [
+                    Meal("Breakfast", ["Nut Bar", "Nut Bar"]),
                     Meal("Lunch", ["Wholegrain Wrap", "Scoop Peanut Butter", "Scoop Peanut Butter"]),
                     Meal("Dinner", ["Spicy Noodle Pack", "Spicy Noodle Pack"]),
                 ]),
@@ -68,8 +70,40 @@ sections = [
                 "Snickers",
                 "Snickers",
                 "Snickers",
+                "Sweet Chilli Flavoured Cashews",
             ]),
-    Section("Somersby", "Newcastle", [], [])
+    Section("Somersby", "Newcastle", [
+                Day(date(2022, 2, 8), [
+                    Meal("Breakfast", []),
+                    Meal("Lunch", ["Wholegrain Wrap", "Babybel", "Babybel"]),
+                    Meal("Dinner", ["Spicy Noodle Pack", "Spicy Noodle Pack"]),
+                ]),
+                Day(date(2022, 2, 9), [
+                    Meal("Breakfast", ["Whitaker's Peanut Slab"]),
+                    Meal("Lunch", ["Wholegrain Wrap", "Tuna Pouch"]),
+                    Meal("Dinner", ["Back Country Beef Teriyaki"]),
+                ]),
+                Day(date(2022, 2, 10), [
+                    Meal("Breakfast", ["Nut Bar", "Nut Bar"]),
+                    Meal("Lunch", ["Wholegrain Wrap", "Babybel", "Babybel"]),
+                    Meal("Dinner", ["Spicy Noodle Pack", "Spicy Noodle Pack"]),
+                ]),
+                Day(date(2022, 2, 11), [
+                    Meal("Breakfast", ["Back Country Cooked Breakfast"]),
+                    Meal("Lunch", ["Wholegrain Wrap", "Scoop Peanut Butter", "Scoop Peanut Butter"]),
+                    Meal("Dinner", ["Newcastle Dinner"]),
+                ]),
+        ], [
+                "Beef Jerky",
+                "Dried Cranberries",
+                "Dried Peas",
+                "Peanut M&Ms",
+                "Snickers",
+                "Snickers",
+                "Snickers",
+                "Snickers",
+                "Sweet Chilli Flavoured Cashews",
+        ])
 ]
 
 ret = 0
@@ -102,7 +136,7 @@ def main():
                     food_item = lookup(food_item_name)
                     energy_total += food_item.energy
                     weight_total += food_item.weight
-            print(f"Day {day.date}: {int(energy_total)} KJ")
+            print(f"{day.date.strftime('%a %-d %b')}: {int(energy_total)} KJ")
 
         print(f"Section Weight: {weight_total} g\n")
 
