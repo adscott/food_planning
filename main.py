@@ -1,9 +1,13 @@
 import sys
 
 from collections import namedtuple
+from datetime import date
 
 
 FoodItem = namedtuple("FoodItem", ["name", "weight", "energy"])
+Meal = namedtuple("Meal", ["name", "food_items"])
+Day = namedtuple("Day", ["date", "meals"])
+Section = namedtuple("Section", ["start", "end", "days", "extras"])
 
 food_items = set([
     FoodItem("Belvita Biscuits", 50, 901),  # https://www.woolworths.com.au/shop/productdetails/715921/belvita-milk-cereal-breakfast-biscuits
@@ -27,46 +31,46 @@ food_items = set([
     FoodItem("Peanut M&Ms", 180, 2140 * 1.8),
 ])
 
-Meal = namedtuple("Meal", ["name", "food_items"])
-
-meals = {
-    1: [
-        Meal("Breakfast", ["Home Coffee", "Home Porridge"]),
-        Meal("Lunch", ["Wholegrain Wrap", "Babybel", "Babybel"]),
-        Meal("Dinner", ["Spicy Noodle Pack", "Spicy Noodle Pack"]),
-    ],
-    2: [
-        Meal("Breakfast", ["Whitaker's Peanut Slab"]),
-        Meal("Lunch", ["Wholegrain Wrap", "Tuna Pouch"]),
-        Meal("Dinner", ["Back Country Beef Teriyaki"]),
-    ],
-    3: [
-        Meal("Lunch", ["Wholegrain Wrap", "Scoop Peanut Butter", "Scoop Peanut Butter"]),
-        Meal("Dinner", ["Spicy Noodle Pack", "Spicy Noodle Pack"]),
-    ],
-    4: [
-        Meal("Breakfast", ["Nut Bar", "Nut Bar"]),
-        Meal("Lunch", ["Wholegrain Wrap", "Babybel", "Babybel"]),
-        Meal("Dinner", ["Back Country Beef Teriyaki"]),
-    ],
-    5: [
-        Meal("Breakfast", ["Back Country Cooked Breakfast"]),
-        Meal("Lunch", ["Wholegrain Wrap", "Scoop Peanut Butter", "Scoop Peanut Butter"]),
-        Meal("Dinner", ["Spicy Noodle Pack", "Spicy Noodle Pack"]),
-    ],
-}
-
-extras = [
-    "Beef Jerky",
-    "Dried Cranberries",
-    "Dried Mushrooms",
-    "Peanut M&Ms",
-    "Snickers",
-    "Snickers",
-    "Snickers",
-    "Snickers",
+sections = [
+    Section("Sydney", "Somersby",
+            [
+                Day(date(2022, 2, 3), [
+                    Meal("Breakfast", ["Home Coffee", "Home Porridge"]),
+                    Meal("Lunch", ["Wholegrain Wrap", "Babybel", "Babybel"]),
+                    Meal("Dinner", ["Spicy Noodle Pack", "Spicy Noodle Pack"]),
+                ]),
+                Day(date(2022, 2, 4), [
+                    Meal("Breakfast", ["Whitaker's Peanut Slab"]),
+                    Meal("Lunch", ["Wholegrain Wrap", "Tuna Pouch"]),
+                    Meal("Dinner", ["Back Country Beef Teriyaki"]),
+                ]),
+                Day(date(2022, 2, 5), [
+                    Meal("Lunch", ["Wholegrain Wrap", "Scoop Peanut Butter", "Scoop Peanut Butter"]),
+                    Meal("Dinner", ["Spicy Noodle Pack", "Spicy Noodle Pack"]),
+                ]),
+                Day(date(2022, 2, 6), [
+                    Meal("Breakfast", ["Back Country Cooked Breakfast"]),
+                    Meal("Lunch", ["Wholegrain Wrap", "Babybel", "Babybel"]),
+                    Meal("Dinner", ["Back Country Beef Teriyaki"]),
+                ]),
+                Day(date(2022, 2, 7), [
+                    Meal("Breakfast", ["Nut Bar", "Nut Bar"]),
+                    Meal("Lunch", ["Wholegrain Wrap", "Scoop Peanut Butter", "Scoop Peanut Butter"]),  # Hoping for a burger this day.
+                    Meal("Dinner", ["Spicy Noodle Pack", "Spicy Noodle Pack"]),
+                ]),
+            ],
+            [
+                "Beef Jerky",
+                "Dried Cranberries",
+                "Dried Mushrooms",
+                "Peanut M&Ms",
+                "Snickers",
+                "Snickers",
+                "Snickers",
+                "Snickers",
+            ]),
+    Section("Somersby", "Newcastle", [], [])
 ]
-
 
 ret = 0
 
@@ -82,23 +86,25 @@ def lookup(food_item_name):
 
 
 def main():
-    weight_total = 0
-    extras_energy = 0
+    for section in sections:
+        print(f"Section: {section.start} to {section.end}")
+        weight_total = 0
+        extras_energy = 0
 
-    for extra in extras:
-        weight_total += lookup(extra).weight
-        extras_energy += lookup(extra).energy
+        for extra in section.extras:
+            weight_total += lookup(extra).weight
+            extras_energy += lookup(extra).energy
 
-    for day in sorted(meals.keys()):
-        energy_total = extras_energy / len(meals)
-        for meal in meals[day]:
-            for food_item_name in meal.food_items:
-                food_item = lookup(food_item_name)
-                energy_total += food_item.energy
-                weight_total += food_item.weight
-        print(f"Day {day}: {energy_total} KJ")
+        for day in section.days:
+            energy_total = extras_energy / len(day.meals)
+            for meal in day.meals:
+                for food_item_name in meal.food_items:
+                    food_item = lookup(food_item_name)
+                    energy_total += food_item.energy
+                    weight_total += food_item.weight
+            print(f"Day {day.date}: {int(energy_total)} KJ")
 
-    print(f"Total Weight: {weight_total} gm")
+        print(f"Section Weight: {weight_total} g\n")
 
     sys.exit(ret)
 
