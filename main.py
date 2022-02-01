@@ -60,7 +60,7 @@ sections = [
                 Day(date(2022, 2, 6), [
                     Meal("Breakfast", ["Back Country Cooked Breakfast"]),
                     Meal("Lunch", ["Wholegrain Wrap", "Scoop Peanut Butter", "Scoop Peanut Butter"]),
-                    Meal("Dinner", ["Back Country Roast Chicken"]),
+                    Meal("Dinner", ["Back Country Beef and Pasta Hotpot"]),
                 ]),
                 Day(date(2022, 2, 7), [
                     Meal("Breakfast", ["Nut Bar", "Nut Bar"]),
@@ -93,7 +93,7 @@ sections = [
                 Day(date(2022, 2, 9), [
                     Meal("Breakfast", ["Whitaker's Coconut Slab"]),
                     Meal("Lunch", ["Wholegrain Wrap", "Tuna Pouch"]),
-                    Meal("Dinner", ["Back Country Beef and Pasta Hotpot"]),
+                    Meal("Dinner", ["Back Country Roast Chicken"]),
                 ]),
                 Day(date(2022, 2, 10), [
                     Meal("Breakfast", ["Nut Bar", "Nut Bar"]),
