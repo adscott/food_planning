@@ -54,12 +54,12 @@ sections = [
                 ]),
                 Day(date(2022, 2, 5), [
                     Meal("Breakfast", ["Nut Bar", "Nut Bar"]),
-                    Meal("Lunch", ["Wholegrain Wrap", "Scoop Peanut Butter", "Scoop Peanut Butter"]),
+                    Meal("Lunch", ["Wholegrain Wrap", "Babybel", "Babybel"]),
                     Meal("Dinner", ["Spicy Noodle Pack", "Spicy Noodle Pack"]),
                 ]),
                 Day(date(2022, 2, 6), [
                     Meal("Breakfast", ["Back Country Cooked Breakfast"]),
-                    Meal("Lunch", ["Wholegrain Wrap", "Babybel", "Babybel"]),
+                    Meal("Lunch", ["Wholegrain Wrap", "Scoop Peanut Butter", "Scoop Peanut Butter"]),
                     Meal("Dinner", ["Back Country Roast Chicken"]),
                 ]),
                 Day(date(2022, 2, 7), [
@@ -70,6 +70,8 @@ sections = [
             ],
             [
                 "Beef Jerky",
+                "Belvita Biscuits",
+                "Belvita Biscuits",
                 "Chilli & Lime Soya Crisps",
                 "Dried Cranberries",
                 "Dried Mushrooms",
@@ -105,6 +107,8 @@ sections = [
                 ]),
         ], [
                 "Beef Jerky",
+                "Belvita Biscuits",
+                "Belvita Biscuits",
                 "Dried Cranberries",
                 "Dried Peas",
                 "Jar Peanut Butter",
