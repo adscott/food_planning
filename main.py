@@ -86,22 +86,22 @@ sections = [
             ]),
     Section("Somersby", "Newcastle", [
                 Day(date(2022, 2, 8), [
-                    Meal("Breakfast", ["Whitaker's Coconut Slab"]),
+                    Meal("Breakfast", ["Back Country Cooked Breakfast"]),
                     Meal("Lunch", ["Wholegrain Wrap", "Babybel", "Babybel"]),
                     Meal("Dinner", ["Spicy Noodle Pack", "Spicy Noodle Pack"]),
                 ]),
                 Day(date(2022, 2, 9), [
-                    Meal("Breakfast", ["Back Country Cooked Breakfast"]),
+                    Meal("Breakfast", ["Whitaker's Coconut Slab"]),
                     Meal("Lunch", ["Wholegrain Wrap", "Tuna Pouch"]),
                     Meal("Dinner", ["Back Country Beef and Pasta Hotpot"]),
                 ]),
                 Day(date(2022, 2, 10), [
-                    Meal("Breakfast", ["Whitaker's Almond Slab"]),
+                    Meal("Breakfast", ["Nut Bar", "Nut Bar"]),
                     Meal("Lunch", ["Wholegrain Wrap", "Babybel", "Babybel"]),
                     Meal("Dinner", ["Spicy Noodle Pack", "Spicy Noodle Pack"]),
                 ]),
                 Day(date(2022, 2, 11), [
-                    Meal("Breakfast", ["Nut Bar", "Nut Bar"]),
+                    Meal("Breakfast", ["Whitaker's Almond Slab"]),
                     Meal("Lunch", ["Wholegrain Wrap", "Scoop Peanut Butter", "Scoop Peanut Butter"]),
                     Meal("Dinner", ["Newcastle Dinner"]),
                 ]),
