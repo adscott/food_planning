@@ -31,5 +31,14 @@ def print_categories():
     print(tabulate(rows))
 
 
+def category(energy, weight):
+    ret = None
+    for c in _categories:
+        if c.lower > (energy / weight):
+            break
+        ret = c
+    return ret.name
+
+
 if __name__ == "__main__":
     print_categories()

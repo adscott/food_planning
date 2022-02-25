@@ -3,7 +3,7 @@ import sys
 from collections import namedtuple
 from datetime import date
 
-from categories import ureg
+from categories import category, ureg
 
 
 FoodItem = namedtuple("FoodItem", ["name", "weight", "energy"])
@@ -145,22 +145,27 @@ def main():
     for section in sections:
         print(f"Section: {section.start} to {section.end}")
         weight_total = 0
+        energy_total = 0
+        extras_weight = 0
         extras_energy = 0
 
         for extra in section.extras:
-            weight_total += lookup(extra).weight
+            extras_weight += lookup(extra).weight
             extras_energy += lookup(extra).energy
 
         for day in section.days:
-            energy_total = extras_energy / len(section.days)
+            energy_day = extras_energy / len(section.days)
+            weight_day = extras_weight / len(section.days)
             for meal in day.meals:
                 for food_item_name in meal.food_items:
                     food_item = lookup(food_item_name)
-                    energy_total += food_item.energy
-                    weight_total += food_item.weight
-            print(f"{day.date.strftime('%a %-d %b')}: {energy_total}")
+                    energy_day += food_item.energy
+                    weight_day += food_item.weight
+            energy_total += energy_day
+            weight_total += weight_day
+            print(f"{day.date.strftime('%a %-d %b')}: {energy_day} {category(energy_day, weight_day)}")
 
-        print(f"Section Weight: {weight_total}\n")
+        print(f"Section Weight: {weight_total} {category(energy_total, weight_total)}\n")
 
     sys.exit(ret)
 
