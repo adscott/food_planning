@@ -32,6 +32,9 @@ def print_categories():
 
 
 def category(energy, weight):
+    if weight == 0:
+        return "free"
+
     ret = None
     for c in _categories:
         if c.lower > (energy / weight):
