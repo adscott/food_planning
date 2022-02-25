@@ -3,6 +3,8 @@ import sys
 from collections import namedtuple
 from datetime import date
 
+from categories import ureg
+
 
 FoodItem = namedtuple("FoodItem", ["name", "weight", "energy"])
 Meal = namedtuple("Meal", ["name", "food_items"])
@@ -10,34 +12,34 @@ Day = namedtuple("Day", ["date", "meals"])
 Section = namedtuple("Section", ["start", "end", "days", "extras"])
 
 food_items = set([
-    FoodItem("Babybel", 20, 1563 / 5.0),
-    FoodItem("Back Country Beef Teriyaki", 175, 3130),
-    FoodItem("Back Country Beef and Pasta Hotpot", 175, 3190),
-    FoodItem("Back Country Cooked Breakfast", 175, 3700),
-    FoodItem("Back Country Roast Chicken", 175, 3180),
-    FoodItem("Beef Jerky", 180, 1130 * 1.8),
-    FoodItem("Belvita Biscuits", 50, 901),  # https://www.woolworths.com.au/shop/productdetails/715921/belvita-milk-cereal-breakfast-biscuits
-    FoodItem("Chilli & Lime Soya Crisps", 400, 2070 * 4),
-    FoodItem("Dried Cranberries", 170, 1370 * 1.7),  # https://www.woolworths.com.au/shop/productdetails/95093/ocean-spray-craisins-dried-cranberries
-    FoodItem("Dried Mushrooms", 50, 700),
-    FoodItem("Dried Peas", 100, 337),
-    FoodItem("Home Coffee", 0, 0),
-    FoodItem("Home Porridge", 0, 1000),
-    FoodItem("Instant Coffee", 0, 70),
-    FoodItem("Maple Flavoured Cashews", 200, 2310 * 2),
-    FoodItem("Newcastle Dinner", 0, 3000),
-    FoodItem("Nut Bar", 35, 750),
-    FoodItem("Original Soya Crisps", 400, 2120 * 4),
-    FoodItem("Peanut M&Ms", 180, 2140 * 1.8),
-    FoodItem("Scoop Peanut Butter", 0, 570), FoodItem("Jar Peanut Butter", 400, 0), #  Split weight and energy to make counting easier
-    FoodItem("Snickers", 50, 1030),
-    FoodItem("Spicy Broad Beans", 100, 1960),
-    FoodItem("Spicy Noodle Pack", 85, 1640),
-    FoodItem("Sweet Chilli Flavoured Cashews", 200, 2280 * 2),  # https://www.woolworths.com.au/shop/productdetails/728223/woolworths-cashews-sweet-chilli-flavoured
-    FoodItem("Tuna Pouch", 160, 890),
-    FoodItem("Whitaker's Almond Slab", 45, 1103),
-    FoodItem("Whitaker's Coconut Slab", 50, 1215),
-    FoodItem("Wholegrain Wrap", 45, 496),  # https://www.woolworths.com.au/shop/productdetails/634919/woolworths-wholegrain-wrap-8pk
+    FoodItem("Babybel", 20 * ureg.gram, 1563 / 5.0 * ureg.kilojoule),
+    FoodItem("Back Country Beef Teriyaki", 175 * ureg.gram, 3130 * ureg.kilojoule),
+    FoodItem("Back Country Beef and Pasta Hotpot", 175 * ureg.gram, 3190 * ureg.kilojoule),
+    FoodItem("Back Country Cooked Breakfast", 175 * ureg.gram, 3700 * ureg.kilojoule),
+    FoodItem("Back Country Roast Chicken", 175 * ureg.gram, 3180 * ureg.kilojoule),
+    FoodItem("Beef Jerky", 180 * ureg.gram, 1130 * 1.8 * ureg.kilojoule),
+    FoodItem("Belvita Biscuits", 50 * ureg.gram, 901 * ureg.kilojoule),  # https://www.woolworths.com.au/shop/productdetails/715921/belvita-milk-cereal-breakfast-biscuits
+    FoodItem("Chilli & Lime Soya Crisps", 400 * ureg.gram, 2070 * 4 * ureg.kilojoule),
+    FoodItem("Dried Cranberries", 170 * ureg.gram, 1370 * 1.7 * ureg.kilojoule),  # https://www.woolworths.com.au/shop/productdetails/95093/ocean-spray-craisins-dried-cranberries
+    FoodItem("Dried Mushrooms", 50 * ureg.gram, 700 * ureg.kilojoule),
+    FoodItem("Dried Peas", 100 * ureg.gram, 337 * ureg.kilojoule),
+    FoodItem("Home Coffee", 0 * ureg.gram, 0 * ureg.kilojoule),
+    FoodItem("Home Porridge", 0 * ureg.gram, 1000 * ureg.kilojoule),
+    FoodItem("Instant Coffee", 0 * ureg.gram, 70 * ureg.kilojoule),
+    FoodItem("Maple Flavoured Cashews", 200 * ureg.gram, 2310 * 2 * ureg.kilojoule),
+    FoodItem("Newcastle Dinner", 0 * ureg.gram, 3000 * ureg.kilojoule),
+    FoodItem("Nut Bar", 35 * ureg.gram, 750 * ureg.kilojoule),
+    FoodItem("Original Soya Crisps", 400 * ureg.gram, 2120 * 4 * ureg.kilojoule),
+    FoodItem("Peanut M&Ms", 180 * ureg.gram, 2140 * 1.8 * ureg.kilojoule),
+    FoodItem("Scoop Peanut Butter", 0 * ureg.gram, 570 * ureg.kilojoule), FoodItem("Jar Peanut Butter", 400 * ureg.gram, 0 * ureg.kilojoule),  # Split weight and energy to make counting easier
+    FoodItem("Snickers", 50 * ureg.gram, 1030 * ureg.kilojoule),
+    FoodItem("Spicy Broad Beans", 100 * ureg.gram, 1960 * ureg.kilojoule),
+    FoodItem("Spicy Noodle Pack", 85 * ureg.gram, 1640 * ureg.kilojoule),
+    FoodItem("Sweet Chilli Flavoured Cashews", 200 * ureg.gram, 2280 * 2 * ureg.kilojoule),  # https://www.woolworths.com.au/shop/productdetails/728223/woolworths-cashews-sweet-chilli-flavoured
+    FoodItem("Tuna Pouch", 160 * ureg.gram, 890 * ureg.kilojoule),
+    FoodItem("Whitaker's Almond Slab", 45 * ureg.gram, 1103 * ureg.kilojoule),
+    FoodItem("Whitaker's Coconut Slab", 50 * ureg.gram, 1215 * ureg.kilojoule),
+    FoodItem("Wholegrain Wrap", 45 * ureg.gram, 496 * ureg.kilojoule),  # https://www.woolworths.com.au/shop/productdetails/634919/woolworths-wholegrain-wrap-8pk
 ])
 
 sections = [
@@ -156,9 +158,9 @@ def main():
                     food_item = lookup(food_item_name)
                     energy_total += food_item.energy
                     weight_total += food_item.weight
-            print(f"{day.date.strftime('%a %-d %b')}: {int(energy_total)} KJ")
+            print(f"{day.date.strftime('%a %-d %b')}: {energy_total}")
 
-        print(f"Section Weight: {weight_total} g\n")
+        print(f"Section Weight: {weight_total}\n")
 
     sys.exit(ret)
 
