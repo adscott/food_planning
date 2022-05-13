@@ -8,6 +8,7 @@ from tabulate import tabulate
 
 from categories import category, ureg
 
+kcal = ureg.calorie * 1000
 kj = ureg.kilojoule
 g = ureg.gram
 
@@ -17,119 +18,49 @@ Day = namedtuple("Day", ["date", "meals"])
 Section = namedtuple("Section", ["start", "end", "days", "extras"])
 
 food_items = set([
-    FoodItem("Babybel", 20 * g, 1563 / 5.0 * kj),
-    FoodItem("Back Country Beef Teriyaki", 175 * g, 3130 * kj),
-    FoodItem("Back Country Beef and Pasta Hotpot", 175 * g, 3190 * kj),
-    FoodItem("Back Country Cooked Breakfast", 175 * g, 3700 * kj),
-    FoodItem("Back Country Roast Chicken", 175 * g, 3180 * kj),
-    FoodItem("Beef Jerky", 180 * g, 1130 * 1.8 * kj),
-    FoodItem("Belvita Biscuits", 50 * g, 901 * kj),  # https://www.woolworths.com.au/shop/productdetails/715921/belvita-milk-cereal-breakfast-biscuits
-    FoodItem("Chilli & Lime Soya Crisps", 400 * g, 2070 * 4 * kj),
-    FoodItem("Dried Cranberries", 170 * g, 1370 * 1.7 * kj),  # https://www.woolworths.com.au/shop/productdetails/95093/ocean-spray-craisins-dried-cranberries
-    FoodItem("Dried Mushrooms", 50 * g, 700 * kj),
-    FoodItem("Dried Peas", 100 * g, 337 * kj),
-    FoodItem("Home Coffee", 0 * g, 0 * kj),
-    FoodItem("Home Porridge", 0 * g, 1000 * kj),
-    FoodItem("Instant Coffee", 0 * g, 70 * kj),
-    FoodItem("Maple Flavoured Cashews", 200 * g, 2310 * 2 * kj),
-    FoodItem("Newcastle Dinner", 0 * g, 3000 * kj),
-    FoodItem("Nut Bar", 35 * g, 750 * kj),
-    FoodItem("Original Soya Crisps", 400 * g, 2120 * 4 * kj),
+    FoodItem("Campers Pantry Cream Rice Pudding with Apple", 68 * g, 1832 * kj),
     FoodItem("Peanut M&Ms", 180 * g, 2140 * 1.8 * kj),
-    FoodItem("Scoop Peanut Butter", 0 * g, 570 * kj), FoodItem("Jar Peanut Butter", 400 * g, 0 * kj),  # Split weight and energy to make counting easier
-    FoodItem("Snickers", 50 * g, 1030 * kj),
-    FoodItem("Spicy Broad Beans", 100 * g, 1960 * kj),
-    FoodItem("Spicy Noodle Pack", 85 * g, 1640 * kj),
-    FoodItem("Sweet Chilli Flavoured Cashews", 200 * g, 2280 * 2 * kj),  # https://www.woolworths.com.au/shop/productdetails/728223/woolworths-cashews-sweet-chilli-flavoured
-    FoodItem("Tuna Pouch", 160 * g, 890 * kj),
+    FoodItem("Radix Breakfast Mixed Berry", 175.1 * g, 806 * kcal),
+    FoodItem("Radix Breakfast Apple & Cinnamon", 178.9 * g, 800 * kcal),
+    FoodItem("Radix Meal Barbecue Beef", 156.2 * g, 801 * kcal),
+    FoodItem("Radix Meal Basil Pesto", 157.8 * g, 805 * kcal),
+    FoodItem("Radix Meal Indian Curry", 164.6 * g, 799 * kcal),
+    FoodItem("Radix Meal Mexican Chilli", 155.7 * g, 799 * kcal),
+    FoodItem("Radix Meal Mint & Rosemary", 153.6 * g, 809 * kcal),
     FoodItem("Whitaker's Almond Slab", 45 * g, 1103 * kj),
     FoodItem("Whitaker's Coconut Slab", 50 * g, 1215 * kj),
-    FoodItem("Wholegrain Wrap", 45 * g, 496 * kj),  # https://www.woolworths.com.au/shop/productdetails/634919/woolworths-wholegrain-wrap-8pk
 ])
 
 sections = [
-    Section("Sydney", "Somersby",
-            [
-                Day(date(2022, 2, 3), [
-                    Meal("Breakfast", ["Home Coffee", "Home Porridge"]),
-                    Meal("Lunch", ["Wholegrain Wrap", "Babybel", "Babybel"]),
-                    Meal("Dinner", ["Spicy Noodle Pack", "Spicy Noodle Pack"]),
-                ]),
-                Day(date(2022, 2, 4), [
-                    Meal("Breakfast", ["Whitaker's Almond Slab"]),
-                    Meal("Lunch", ["Wholegrain Wrap", "Tuna Pouch"]),
-                    Meal("Dinner", ["Back Country Beef Teriyaki"]),
-                ]),
-                Day(date(2022, 2, 5), [
-                    Meal("Breakfast", ["Nut Bar", "Nut Bar"]),
-                    Meal("Lunch", ["Wholegrain Wrap", "Babybel", "Babybel"]),
-                    Meal("Dinner", ["Spicy Noodle Pack", "Spicy Noodle Pack"]),
-                ]),
-                Day(date(2022, 2, 6), [
-                    Meal("Breakfast", ["Back Country Cooked Breakfast"]),
-                    Meal("Lunch", ["Wholegrain Wrap", "Scoop Peanut Butter", "Scoop Peanut Butter"]),
-                    Meal("Dinner", ["Back Country Beef and Pasta Hotpot"]),
-                ]),
-                Day(date(2022, 2, 7), [
-                    Meal("Breakfast", ["Nut Bar", "Nut Bar"]),
-                    Meal("Lunch", ["Wholegrain Wrap", "Scoop Peanut Butter", "Scoop Peanut Butter"]),  # Hoping for a burger this day.
-                    Meal("Dinner", ["Spicy Noodle Pack", "Spicy Noodle Pack"]),
-                ]),
-            ],
-            [
-                "Beef Jerky",
-                "Belvita Biscuits",
-                "Belvita Biscuits",
-                "Chilli & Lime Soya Crisps",
-                "Dried Cranberries",
-                "Dried Mushrooms",
-                "Instant Coffee",
-                "Jar Peanut Butter",
-                "Maple Flavoured Cashews",
-                "Peanut M&Ms",
-                "Snickers",
-                "Snickers",
-                "Snickers",
-                "Snickers",
-                "Spicy Broad Beans",
-            ]),
     Section("Somersby", "Newcastle", [
-                Day(date(2022, 2, 8), [
-                    Meal("Breakfast", ["Back Country Cooked Breakfast"]),
-                    Meal("Lunch", ["Wholegrain Wrap", "Babybel", "Babybel"]),
-                    Meal("Dinner", ["Spicy Noodle Pack", "Spicy Noodle Pack"]),
+                Day(date(2022, 6, 14), [
+                    Meal("Dinner", ["Radix Meal Indian Curry", "Whitaker's Coconut Slab"]),
                 ]),
-                Day(date(2022, 2, 9), [
-                    Meal("Breakfast", ["Whitaker's Coconut Slab"]),
-                    Meal("Lunch", ["Wholegrain Wrap", "Tuna Pouch"]),
-                    Meal("Dinner", ["Back Country Roast Chicken"]),
+                Day(date(2022, 6, 15), [
+                    Meal("Breakfast", ["Radix Breakfast Mixed Berry"]),
+                    Meal("Hiking", []),
+                    Meal("Dinner", ["Radix Meal Mexican Chilli", "Whitaker's Almond Slab"]),
                 ]),
-                Day(date(2022, 2, 10), [
-                    Meal("Breakfast", ["Nut Bar", "Nut Bar"]),
-                    Meal("Lunch", ["Wholegrain Wrap", "Babybel", "Babybel"]),
-                    Meal("Dinner", ["Spicy Noodle Pack", "Spicy Noodle Pack"]),
+                Day(date(2022, 6, 16), [
+                    Meal("Breakfast", ["Radix Breakfast Apple & Cinnamon"]),
+                    Meal("Hiking", []),
+                    Meal("Dinner", ["Radix Meal Basil Pesto", "Whitaker's Coconut Slab"]),
                 ]),
-                Day(date(2022, 2, 11), [
-                    Meal("Breakfast", ["Whitaker's Almond Slab"]),
-                    Meal("Lunch", ["Wholegrain Wrap", "Scoop Peanut Butter", "Scoop Peanut Butter"]),
-                    Meal("Dinner", ["Newcastle Dinner"]),
+                Day(date(2022, 6, 17), [
+                    Meal("Breakfast", ["Radix Breakfast Mixed Berry"]),
+                    Meal("Hiking", []),
+                    Meal("Dinner", ["Radix Meal Barbecue Beef", "Campers Pantry Cream Rice Pudding with Apple"]),
+                ]),
+                Day(date(2022, 6, 18), [
+                    Meal("Breakfast", []),
+                    Meal("Hiking", []),
+                    Meal("Dinner", ["Radix Meal Mint & Rosemary", "Whitaker's Coconut Slab"]),
+                ]),
+                Day(date(2022, 6, 19), [
+                    Meal("Breakfast", []),
+                    Meal("Hiking", []),
                 ]),
         ], [
-                "Beef Jerky",
-                "Belvita Biscuits",
-                "Belvita Biscuits",
-                "Dried Cranberries",
-                "Dried Peas",
-                "Instant Coffee",
-                "Jar Peanut Butter",
-                "Original Soya Crisps",
-                "Peanut M&Ms",
-                "Snickers",
-                "Snickers",
-                "Snickers",
-                "Snickers",
-                "Spicy Broad Beans",
-                "Sweet Chilli Flavoured Cashews",
         ])
 ]
 
@@ -153,10 +84,10 @@ def main():
     for section in sections:
         rows = []
         print(f"Section: {section.start} to {section.end}")
-        weight_total = 0
-        energy_total = 0
-        extras_weight = 0
-        extras_energy = 0
+        weight_total = 0 * g
+        energy_total = 0 * kj
+        extras_weight = 0 * g
+        extras_energy = 0 * kj
 
         for extra in section.extras:
             extras_weight += lookup(extra).weight
@@ -172,9 +103,9 @@ def main():
                     weight_day += food_item.weight
             energy_total += energy_day
             weight_total += weight_day
-            rows.append([day.date.strftime('%a %-d %b'), energy_day, weight_day, category(energy_day, weight_day)])
+            rows.append([day.date.strftime('%a %-d %b'), energy_day.to(kj), weight_day, category(energy_day, weight_day)])
 
-        rows.append(["Section", energy_total, weight_total, category(energy_total, weight_total)])
+        rows.append(["Section", energy_total.to(kj), weight_total, category(energy_total, weight_total)])
         print(tabulate(rows))
         print("\n")
 
