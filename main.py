@@ -12,23 +12,52 @@ kcal = ureg.calorie * 1000
 kj = ureg.kilojoule
 g = ureg.gram
 
-FoodItem = namedtuple("FoodItem", ["name", "weight", "energy"])
+
+class FoodItem(object):
+    def __init__(self, name, recorded_weight, energy, packaged):
+        self.name = name
+        self.energy = energy
+        self.packaged = packaged
+        self.weight = recorded_weight if packaged else recorded_weight * 1.1
+
+
 Meal = namedtuple("Meal", ["name", "food_items"])
 Day = namedtuple("Day", ["date", "meals"])
 Section = namedtuple("Section", ["start", "end", "days", "extras"])
 
 food_items = set([
-    FoodItem("Campers Pantry Cream Rice Pudding with Apple", 68 * g, 1832 * kj),
-    FoodItem("Peanut M&Ms", 180 * g, 2140 * 1.8 * kj),
-    FoodItem("Radix Breakfast Mixed Berry", 175.1 * g, 806 * kcal),
-    FoodItem("Radix Breakfast Apple & Cinnamon", 178.9 * g, 800 * kcal),
-    FoodItem("Radix Meal Barbecue Beef", 156.2 * g, 801 * kcal),
-    FoodItem("Radix Meal Basil Pesto", 157.8 * g, 805 * kcal),
-    FoodItem("Radix Meal Indian Curry", 164.6 * g, 799 * kcal),
-    FoodItem("Radix Meal Mexican Chilli", 155.7 * g, 799 * kcal),
-    FoodItem("Radix Meal Mint & Rosemary", 153.6 * g, 809 * kcal),
-    FoodItem("Whitaker's Almond Slab", 45 * g, 1103 * kj),
-    FoodItem("Whitaker's Coconut Slab", 50 * g, 1215 * kj),
+    FoodItem("Campers Pantry Cream Rice Pudding with Apple", 68 * g, 1832 * kj, True),
+    FoodItem("Peanut M&Ms", 180 * g, 2140 * 1.8 * kj, True),
+    FoodItem("Radix Breakfast Mixed Berry", 175.1 * g, 806 * kcal, True),
+    FoodItem("Radix Breakfast Apple & Cinnamon", 178.9 * g, 800 * kcal, True),
+    FoodItem("Radix Meal Barbecue Beef", 156.2 * g, 801 * kcal, True),
+    FoodItem("Radix Meal Basil Pesto", 157.8 * g, 805 * kcal, True),
+    FoodItem("Radix Meal Indian Curry", 164.6 * g, 799 * kcal, True),
+    FoodItem("Radix Meal Mexican Chilli", 155.7 * g, 799 * kcal, True),
+    FoodItem("Radix Meal Mint & Rosemary", 153.6 * g, 809 * kcal, True),
+
+    FoodItem("Byron Bay Macadamia Muesli with Powdered Milk", (100 + 35) * g, (2560 + 757) * kj, False),
+
+    FoodItem("Whitaker's Almond Slab", 45 * g, 1103 * kj, False),
+    FoodItem("Whitaker's Coconut Slab", 50 * g, 1215 * kj, False),
+
+    FoodItem("Coles Choc Coated Nut Bar", 35 * g, 812 * kj, False),
+    FoodItem("Nature Valley Smooth & Crunchy Peanut Butter Biscuit Bar", 38 * g, 821 * kj, False),
+    FoodItem("Nice & Natural Chocolate Peanut & Almond Bar", 30 * g, 660 * kj, False),
+    FoodItem("Nice & Natural Chocolate Peanut Apricot Bar", 30 * g, 633 * kj, False),
+    FoodItem("Nice & Natural Chocolate Peanut Salted Caramel Bar", 30 * g, 659 * kj, False),
+    FoodItem("Nice & Natural Nut Butter Bar Cashew Butter", 35 * g, 720 * kj, False),
+    FoodItem("Nice & Natural Nut Butter Bar Peanut Butter And Jelly", 35 * g, 738 * kj, False),
+    FoodItem("Nice & Natural Nut Butter Bar Peanut Butter", 35 * g, 750 * kj, False),
+    FoodItem("Nice & Natural Nut Butter Bar Peanut Butter", 35 * g, 750 * kj, False),
+    FoodItem("Nice & Natural Protein Wholeseed Bar Cranberry & Raspberry", 30 * g, 620 * kj, False),
+    FoodItem("Nice & Natural Roasted Peanut & Cashew Bar With Milk Chocolate Drizzle", 32 * g, 710 * kj, False),
+    FoodItem("Sam's Pantry Honey Salted Macadamia Nut Bar", 34 * g, 764 * kj, False),
+    FoodItem("Sam's Pantry Salted Caramel Nut Bar", 34 * g, 762 * kj, False),
+    FoodItem("Tasti Nut Bar Peanut Butter", 35 * g, 788 * kj, False),
+    FoodItem("Tasti Nut Bar Salted Caramel", 35 * g, 791 * kj, False),
+
+    FoodItem("Instant Coffee", 50 * g, 0 * kj, True),
 ])
 
 sections = [
@@ -52,12 +81,12 @@ sections = [
                     Meal("Dinner", ["Radix Meal Barbecue Beef", "Campers Pantry Cream Rice Pudding with Apple"]),
                 ]),
                 Day(date(2022, 6, 18), [
-                    Meal("Breakfast", []),
+                    Meal("Breakfast", ["Byron Bay Macadamia Muesli with Powdered Milk"]),
                     Meal("Hiking", []),
                     Meal("Dinner", ["Radix Meal Mint & Rosemary", "Whitaker's Coconut Slab"]),
                 ]),
                 Day(date(2022, 6, 19), [
-                    Meal("Breakfast", []),
+                    Meal("Breakfast", ["Byron Bay Macadamia Muesli with Powdered Milk"]),
                     Meal("Hiking", []),
                 ]),
         ], [
