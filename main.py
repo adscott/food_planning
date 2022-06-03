@@ -17,7 +17,6 @@ class FoodItem(object):
     def __init__(self, name, recorded_weight, energy, packaged):
         self.name = name
         self.energy = energy
-        self.packaged = packaged
         self.weight = recorded_weight if packaged else recorded_weight * 1.1
 
 
@@ -57,6 +56,7 @@ food_items = set([
     FoodItem("Tasti Nut Bar Salted Caramel", 35 * g, 791 * kj, False),
 
     FoodItem("Instant Coffee", 50 * g, 0 * kj, True),
+    FoodItem("Hot Chocolate", (35 + 18.5 + 25) * g, (757 + 331 + 375) * kj, False),  # 250ml instant milk, 2 tbsp cocao powder, 2 tbsp refined sugar
 ])
 
 sections = [
@@ -121,6 +121,8 @@ sections = [
         ], [
             "Instant Coffee",
             "Peanut M&Ms",
+            "Hot Chocolate",
+            "Hot Chocolate",
         ])
 ]
 
