@@ -49,7 +49,6 @@ food_items = set([
     FoodItem("Nice & Natural Nut Butter Bar Cashew Butter", 35 * g, 720 * kj, False),
     FoodItem("Nice & Natural Nut Butter Bar Peanut Butter And Jelly", 35 * g, 738 * kj, False),
     FoodItem("Nice & Natural Nut Butter Bar Peanut Butter", 35 * g, 750 * kj, False),
-    FoodItem("Nice & Natural Nut Butter Bar Peanut Butter", 35 * g, 750 * kj, False),
     FoodItem("Nice & Natural Protein Wholeseed Bar Cranberry & Raspberry", 30 * g, 620 * kj, False),
     FoodItem("Nice & Natural Roasted Peanut & Cashew Bar With Milk Chocolate Drizzle", 32 * g, 710 * kj, False),
     FoodItem("Sam's Pantry Honey Salted Macadamia Nut Bar", 34 * g, 764 * kj, False),
@@ -67,29 +66,61 @@ sections = [
                 ]),
                 Day(date(2022, 6, 15), [
                     Meal("Breakfast", ["Radix Breakfast Mixed Berry"]),
-                    Meal("Hiking", []),
+                    Meal("Hiking", [
+                        "Coles Choc Coated Nut Bar",
+                        "Coles Choc Coated Nut Bar",
+                        "Coles Choc Coated Nut Bar",
+                        "Coles Choc Coated Nut Bar",
+                        "Sam's Pantry Honey Salted Macadamia Nut Bar",
+                    ]),
                     Meal("Dinner", ["Radix Meal Mexican Chilli", "Whitaker's Almond Slab"]),
                 ]),
                 Day(date(2022, 6, 16), [
                     Meal("Breakfast", ["Radix Breakfast Apple & Cinnamon"]),
-                    Meal("Hiking", []),
+                    Meal("Hiking", [
+                        "Coles Choc Coated Nut Bar",
+                        "Coles Choc Coated Nut Bar",
+                        "Coles Choc Coated Nut Bar",
+                        "Coles Choc Coated Nut Bar",
+                        "Nice & Natural Protein Wholeseed Bar Cranberry & Raspberry",
+                    ]),
                     Meal("Dinner", ["Radix Meal Basil Pesto", "Whitaker's Coconut Slab"]),
                 ]),
                 Day(date(2022, 6, 17), [
                     Meal("Breakfast", ["Radix Breakfast Mixed Berry"]),
-                    Meal("Hiking", []),
+                    Meal("Hiking", [
+                        "Coles Choc Coated Nut Bar",
+                        "Coles Choc Coated Nut Bar",
+                        "Coles Choc Coated Nut Bar",
+                        "Coles Choc Coated Nut Bar",
+                        "Sam's Pantry Salted Caramel Nut Bar",
+                    ]),
                     Meal("Dinner", ["Radix Meal Barbecue Beef", "Campers Pantry Cream Rice Pudding with Apple"]),
                 ]),
                 Day(date(2022, 6, 18), [
                     Meal("Breakfast", ["Byron Bay Macadamia Muesli with Powdered Milk"]),
-                    Meal("Hiking", []),
+                    Meal("Hiking", [
+                        "Coles Choc Coated Nut Bar",
+                        "Coles Choc Coated Nut Bar",
+                        "Coles Choc Coated Nut Bar",
+                        "Coles Choc Coated Nut Bar",
+                        "Nice & Natural Chocolate Peanut Apricot Bar",
+                    ]),
                     Meal("Dinner", ["Radix Meal Mint & Rosemary", "Whitaker's Coconut Slab"]),
                 ]),
                 Day(date(2022, 6, 19), [
                     Meal("Breakfast", ["Byron Bay Macadamia Muesli with Powdered Milk"]),
-                    Meal("Hiking", []),
+                    Meal("Hiking", [
+                        "Coles Choc Coated Nut Bar",
+                        "Coles Choc Coated Nut Bar",
+                        "Coles Choc Coated Nut Bar",
+                        "Coles Choc Coated Nut Bar",
+                        "Nice & Natural Nut Butter Bar Peanut Butter And Jelly",
+                    ]),
                 ]),
         ], [
+            "Instant Coffee",
+            "Peanut M&Ms",
         ])
 ]
 
