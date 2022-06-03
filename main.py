@@ -26,7 +26,6 @@ Section = namedtuple("Section", ["start", "end", "days", "extras"])
 
 food_items = set([
     FoodItem("Campers Pantry Cream Rice Pudding with Apple", 68 * g, 1832 * kj, True),
-    FoodItem("Peanut M&Ms", 180 * g, 2140 * 1.8 * kj, True),
     FoodItem("Radix Breakfast Mixed Berry", 175.1 * g, 806 * kcal, True),
     FoodItem("Radix Breakfast Apple & Cinnamon", 178.9 * g, 800 * kcal, True),
     FoodItem("Radix Meal Barbecue Beef", 156.2 * g, 801 * kcal, True),
@@ -54,6 +53,8 @@ food_items = set([
     FoodItem("Sam's Pantry Salted Caramel Nut Bar", 34 * g, 762 * kj, False),
     FoodItem("Tasti Nut Bar Peanut Butter", 35 * g, 788 * kj, False),
     FoodItem("Tasti Nut Bar Salted Caramel", 35 * g, 791 * kj, False),
+
+    FoodItem("Peanut M&Ms", 180 * g, 2140 * 1.8 * kj, False),
 
     FoodItem("Instant Coffee", 50 * g, 0 * kj, True),
     FoodItem("Hot Chocolate", (35 + 18.5 + 25) * g, (757 + 331 + 375) * kj, False),  # 250ml instant milk, 2 tbsp cocao powder, 2 tbsp refined sugar
@@ -165,10 +166,11 @@ def main():
                     weight_day += food_item.weight
             energy_total += energy_day
             weight_total += weight_day
-            rows.append([day.date.strftime('%a %-d %b'), energy_day.to(kj), weight_day, category(energy_day, weight_day)])
+            rows.append([day.date.strftime('%a %-d %b'), "{:.0f}".format(energy_day.to(kj)), "{:.0f}".format(weight_day), category(energy_day, weight_day)])
 
-        rows.append(["Section", energy_total.to(kj), weight_total, category(energy_total, weight_total)])
-        print(tabulate(rows))
+        rows.append([])
+        rows.append(["Section", "{:.0f}".format(energy_total.to(kj)), "{:.0f}".format(weight_total), category(energy_total, weight_total)])
+        print(tabulate(rows, stralign="right"))
         print("\n")
 
     sys.exit(ret)
