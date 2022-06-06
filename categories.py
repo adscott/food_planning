@@ -17,7 +17,7 @@ _categories = [
 
 
 def metric_energy(idiot_energy):
-    return idiot_energy.to(ureg.kilojoule / ureg.gram)
+    return "{:.3f}".format(idiot_energy.to(ureg.kilojoule / ureg.gram))
 
 
 def print_categories():
