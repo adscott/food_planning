@@ -62,6 +62,11 @@ food_items = set([
 
     FoodItem("Instant Coffee", 50 * g, 0 * kj, True),
     FoodItem("Hot Chocolate", (35 + 18.5 + 25) * g, (757 + 331 + 375) * kj, False),  # 250ml instant milk, 2 tbsp cocao powder, 2 tbsp refined sugar
+
+    FoodItem("Ritz Crackers", 106 * g, 5 * 429 * kj, True),
+    FoodItem("Continental Cup a Soup Tomato", 23.4 * g, 328 * kj, True),
+    FoodItem("Continental Cup a Soup Creamy Mushroom", 27.3 * g, 453 * kj, True),
+    FoodItem("Bachelors Soupa Cream of Vegetable", 37.3 * g, 564 * kj, True),
 ])
 
 sections = [
