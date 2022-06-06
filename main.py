@@ -56,6 +56,10 @@ food_items = set([
 
     FoodItem("Peanut M&Ms", 180 * g, 2140 * 1.8 * kj, False),
 
+    FoodItem("Tailwind Recovery Chocolate", 67 * g, 245 * kcal, True),
+    FoodItem("Tailwind Recovery Salted Caramel", 64.3 * g, 240 * kcal, True),
+    FoodItem("Tailwind Recovery Vanilla", 65.3 * g, 240 * kcal, True),
+
     FoodItem("Instant Coffee", 50 * g, 0 * kj, True),
     FoodItem("Hot Chocolate", (35 + 18.5 + 25) * g, (757 + 331 + 375) * kj, False),  # 250ml instant milk, 2 tbsp cocao powder, 2 tbsp refined sugar
 ])
@@ -73,6 +77,7 @@ sections = [
                         "Coles Choc Coated Nut Bar",
                         "Coles Choc Coated Nut Bar",
                         "Sam's Pantry Honey Salted Macadamia Nut Bar",
+                        "Tailwind Recovery Chocolate",
                     ]),
                     Meal("Dinner", ["Radix Meal Mexican Chilli", "Whitaker's Almond Slab"]),
                 ]),
@@ -84,6 +89,7 @@ sections = [
                         "Coles Choc Coated Nut Bar",
                         "Coles Choc Coated Nut Bar",
                         "Nice & Natural Protein Wholeseed Bar Cranberry & Raspberry",
+                        "Tailwind Recovery Vanilla",
                     ]),
                     Meal("Dinner", ["Radix Meal Basil Pesto", "Whitaker's Coconut Slab"]),
                 ]),
@@ -95,6 +101,7 @@ sections = [
                         "Coles Choc Coated Nut Bar",
                         "Coles Choc Coated Nut Bar",
                         "Sam's Pantry Salted Caramel Nut Bar",
+                        "Tailwind Recovery Chocolate",
                     ]),
                     Meal("Dinner", ["Radix Meal Barbecue Beef", "Campers Pantry Cream Rice Pudding with Apple"]),
                 ]),
@@ -106,6 +113,7 @@ sections = [
                         "Coles Choc Coated Nut Bar",
                         "Coles Choc Coated Nut Bar",
                         "Nice & Natural Chocolate Peanut Apricot Bar",
+                        "Tailwind Recovery Salted Caramel",
                     ]),
                     Meal("Dinner", ["Radix Meal Mint & Rosemary", "Whitaker's Coconut Slab"]),
                 ]),
@@ -117,6 +125,7 @@ sections = [
                         "Coles Choc Coated Nut Bar",
                         "Coles Choc Coated Nut Bar",
                         "Nice & Natural Nut Butter Bar Peanut Butter And Jelly",
+                        "Tailwind Recovery Chocolate",
                     ]),
                 ]),
         ], [
