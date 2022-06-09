@@ -2,7 +2,6 @@ import sys
 
 from collections import namedtuple
 from datetime import date
-from operator import attrgetter
 
 from tabulate import tabulate
 
@@ -54,25 +53,22 @@ food_items = set([
     FoodItem("Tasti Nut Bar Peanut Butter", 35 * g, 788 * kj, False),
     FoodItem("Tasti Nut Bar Salted Caramel", 35 * g, 791 * kj, False),
 
-    FoodItem("Peanut M&Ms", 180 * g, 2140 * 1.8 * kj, False),
-
     FoodItem("Tailwind Recovery Chocolate", 67 * g, 245 * kcal, True),
     FoodItem("Tailwind Recovery Salted Caramel", 64.3 * g, 240 * kcal, True),
     FoodItem("Tailwind Recovery Vanilla", 65.3 * g, 240 * kcal, True),
 
     FoodItem("Instant Coffee", 50 * g, 0 * kj, True),
-    FoodItem("Hot Chocolate", (35 + 18.5 + 25) * g, (757 + 331 + 375) * kj, False),  # 250ml instant milk, 2 tbsp cocao powder, 2 tbsp refined sugar
+    FoodItem("Hot Chocolate", (35 + 18.5 + 25 + 15) * g, (757 + 331 + 375 + 564) * kj, False),  # 250ml instant milk, 2 tbsp cocao powder, 2 tbsp refined sugar
 
+    FoodItem("Peanut M&Ms", 180 * g, 2140 * 1.8 * kj, False),
     FoodItem("Ritz Crackers", 106 * g, 5 * 429 * kj, True),
-    FoodItem("Continental Cup a Soup Tomato", 23.4 * g, 328 * kj, True),
-    FoodItem("Continental Cup a Soup Creamy Mushroom", 27.3 * g, 453 * kj, True),
-    FoodItem("Bachelors Soupa Cream of Vegetable", 37.3 * g, 564 * kj, True),
+    FoodItem("Butterfingers Pure Butter Macadamia Shortbread", 189 * g, 659 * 6 * kj, True),
 ])
 
 sections = [
     Section("Somersby", "Newcastle", [
                 Day(date(2022, 6, 14), [
-                    Meal("Dinner", ["Radix Meal Indian Curry", "Whitaker's Coconut Slab"]),
+                    Meal("Dinner", ["Radix Meal Mint & Rosemary", "Whitaker's Coconut Slab"]),
                 ]),
                 Day(date(2022, 6, 15), [
                     Meal("Breakfast", ["Radix Breakfast Mixed Berry"]),
@@ -89,8 +85,6 @@ sections = [
                 Day(date(2022, 6, 16), [
                     Meal("Breakfast", ["Radix Breakfast Apple & Cinnamon"]),
                     Meal("Hiking", [
-                        "Coles Choc Coated Nut Bar",
-                        "Coles Choc Coated Nut Bar",
                         "Coles Choc Coated Nut Bar",
                         "Coles Choc Coated Nut Bar",
                         "Nice & Natural Protein Wholeseed Bar Cranberry & Raspberry",
@@ -120,13 +114,11 @@ sections = [
                         "Nice & Natural Chocolate Peanut Apricot Bar",
                         "Tailwind Recovery Salted Caramel",
                     ]),
-                    Meal("Dinner", ["Radix Meal Mint & Rosemary", "Whitaker's Coconut Slab"]),
+                    Meal("Dinner", ["Whitaker's Coconut Slab"]),
                 ]),
                 Day(date(2022, 6, 19), [
                     Meal("Breakfast", ["Byron Bay Macadamia Muesli with Powdered Milk"]),
                     Meal("Hiking", [
-                        "Coles Choc Coated Nut Bar",
-                        "Coles Choc Coated Nut Bar",
                         "Coles Choc Coated Nut Bar",
                         "Coles Choc Coated Nut Bar",
                         "Nice & Natural Nut Butter Bar Peanut Butter And Jelly",
@@ -138,6 +130,8 @@ sections = [
             "Peanut M&Ms",
             "Hot Chocolate",
             "Hot Chocolate",
+            "Butterfingers Pure Butter Macadamia Shortbread",
+            "Ritz Crackers",
         ])
 ]
 
@@ -155,7 +149,7 @@ def lookup(food_item_name):
 
 
 def main():
-    print(tabulate([[f.name, category(f.energy, f.weight)] for f in sorted(food_items, key=attrgetter('name'))]))
+    print(tabulate(sorted(([f.name, category(f.energy, f.weight), "{:.2f}".format(f.energy.to(kj) / f.weight)] for f in food_items), key=lambda x: x[2])))
     print("\n")
 
     for section in sections:
