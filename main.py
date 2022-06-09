@@ -39,19 +39,8 @@ food_items = set([
     FoodItem("Whitaker's Coconut Slab", 50 * g, 1215 * kj, False),
 
     FoodItem("Coles Choc Coated Nut Bar", 35 * g, 812 * kj, False),
-    FoodItem("Nature Valley Smooth & Crunchy Peanut Butter Biscuit Bar", 38 * g, 821 * kj, False),
-    FoodItem("Nice & Natural Chocolate Peanut & Almond Bar", 30 * g, 660 * kj, False),
-    FoodItem("Nice & Natural Chocolate Peanut Apricot Bar", 30 * g, 633 * kj, False),
-    FoodItem("Nice & Natural Chocolate Peanut Salted Caramel Bar", 30 * g, 659 * kj, False),
-    FoodItem("Nice & Natural Nut Butter Bar Cashew Butter", 35 * g, 720 * kj, False),
-    FoodItem("Nice & Natural Nut Butter Bar Peanut Butter And Jelly", 35 * g, 738 * kj, False),
-    FoodItem("Nice & Natural Nut Butter Bar Peanut Butter", 35 * g, 750 * kj, False),
-    FoodItem("Nice & Natural Protein Wholeseed Bar Cranberry & Raspberry", 30 * g, 620 * kj, False),
-    FoodItem("Nice & Natural Roasted Peanut & Cashew Bar With Milk Chocolate Drizzle", 32 * g, 710 * kj, False),
     FoodItem("Sam's Pantry Honey Salted Macadamia Nut Bar", 34 * g, 764 * kj, False),
     FoodItem("Sam's Pantry Salted Caramel Nut Bar", 34 * g, 762 * kj, False),
-    FoodItem("Tasti Nut Bar Peanut Butter", 35 * g, 788 * kj, False),
-    FoodItem("Tasti Nut Bar Salted Caramel", 35 * g, 791 * kj, False),
 
     FoodItem("Tailwind Recovery Chocolate", 67 * g, 245 * kcal, True),
     FoodItem("Tailwind Recovery Salted Caramel", 64.3 * g, 240 * kcal, True),
@@ -68,6 +57,9 @@ food_items = set([
 sections = [
     Section("Somersby", "Newcastle", [
                 Day(date(2022, 6, 14), [
+                    Meal("Hiking", [
+                        "Tailwind Recovery Salted Caramel",
+                    ]),
                     Meal("Dinner", ["Radix Meal Mint & Rosemary", "Whitaker's Coconut Slab"]),
                 ]),
                 Day(date(2022, 6, 15), [
@@ -87,7 +79,7 @@ sections = [
                     Meal("Hiking", [
                         "Coles Choc Coated Nut Bar",
                         "Coles Choc Coated Nut Bar",
-                        "Nice & Natural Protein Wholeseed Bar Cranberry & Raspberry",
+                        "Sam's Pantry Salted Caramel Nut Bar",
                         "Tailwind Recovery Vanilla",
                     ]),
                     Meal("Dinner", ["Radix Meal Basil Pesto", "Whitaker's Coconut Slab"]),
@@ -99,7 +91,7 @@ sections = [
                         "Coles Choc Coated Nut Bar",
                         "Coles Choc Coated Nut Bar",
                         "Coles Choc Coated Nut Bar",
-                        "Sam's Pantry Salted Caramel Nut Bar",
+                        "Sam's Pantry Honey Salted Macadamia Nut Bar",
                         "Tailwind Recovery Chocolate",
                     ]),
                     Meal("Dinner", ["Radix Meal Barbecue Beef", "Campers Pantry Cream Rice Pudding with Apple"]),
@@ -111,7 +103,7 @@ sections = [
                         "Coles Choc Coated Nut Bar",
                         "Coles Choc Coated Nut Bar",
                         "Coles Choc Coated Nut Bar",
-                        "Nice & Natural Chocolate Peanut Apricot Bar",
+                        "Sam's Pantry Salted Caramel Nut Bar",
                         "Tailwind Recovery Salted Caramel",
                     ]),
                     Meal("Dinner", ["Whitaker's Coconut Slab"]),
@@ -121,7 +113,7 @@ sections = [
                     Meal("Hiking", [
                         "Coles Choc Coated Nut Bar",
                         "Coles Choc Coated Nut Bar",
-                        "Nice & Natural Nut Butter Bar Peanut Butter And Jelly",
+                        "Sam's Pantry Honey Salted Macadamia Nut Bar",
                         "Tailwind Recovery Chocolate",
                     ]),
                 ]),
@@ -145,7 +137,7 @@ def lookup(food_item_name):
         global ret
         ret = -1
         print(f"Can't find {food_item_name}")
-        return FoodItem("", 0, 0)
+        return FoodItem("", 0, 0, True)
 
 
 def main():
