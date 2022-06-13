@@ -1,6 +1,6 @@
 import sys
 
-from collections import namedtuple
+from collections import defaultdict, namedtuple
 from datetime import date
 
 from tabulate import tabulate
@@ -24,7 +24,7 @@ Day = namedtuple("Day", ["date", "meals"])
 Section = namedtuple("Section", ["start", "end", "days", "extras"])
 
 food_items = set([
-    FoodItem("Campers Pantry Cream Rice Pudding with Apple", 68 * g, 1832 * kj, True),
+    FoodItem("Campers Pantry Cream Rice Pudding with Apple", 68 * g, 801 * kj, True),
     FoodItem("Radix Breakfast Mixed Berry", 175.1 * g, 806 * kcal, True),
     FoodItem("Radix Breakfast Apple & Cinnamon", 178.9 * g, 800 * kcal, True),
     FoodItem("Radix Meal Barbecue Beef", 156.2 * g, 801 * kcal, True),
@@ -69,8 +69,6 @@ sections = [
                     Meal("Hiking", [
                         "Coles Choc Coated Nut Bar",
                         "Coles Choc Coated Nut Bar",
-                        "Coles Choc Coated Nut Bar",
-                        "Coles Choc Coated Nut Bar",
                         "Sam's Pantry Honey Salted Macadamia Nut Bar",
                         "Tailwind Recovery Chocolate",
                     ]),
@@ -79,6 +77,8 @@ sections = [
                 Day(date(2022, 6, 16), [
                     Meal("Breakfast", ["Radix Breakfast Apple & Cinnamon"]),
                     Meal("Hiking", [
+                        "Coles Choc Coated Nut Bar",
+                        "Coles Choc Coated Nut Bar",
                         "Coles Choc Coated Nut Bar",
                         "Coles Choc Coated Nut Bar",
                         "Tasti Nut Bar Peanut Butter",
@@ -96,7 +96,7 @@ sections = [
                         "Sam's Pantry Salted Caramel Nut Bar",
                         "Tailwind Recovery Chocolate",
                     ]),
-                    Meal("Dinner", ["Radix Meal Barbecue Beef", "Campers Pantry Cream Rice Pudding with Apple"]),
+                    Meal("Dinner", ["Radix Meal Barbecue Beef", "Whitaker's Almond Slab"]),
                 ]),
                 Day(date(2022, 6, 18), [
                     Meal("Breakfast", ["Byron Bay Macadamia Muesli with Powdered Milk"]),
@@ -153,10 +153,12 @@ def main():
         energy_total = 0 * kj
         extras_weight = 0 * g
         extras_energy = 0 * kj
+        inventory = defaultdict(lambda: 0)
 
         for extra in section.extras:
             extras_weight += lookup(extra).weight
             extras_energy += lookup(extra).energy
+            inventory[extra] += 1
 
         for day in section.days:
             energy_day = extras_energy / len(section.days)
@@ -166,6 +168,7 @@ def main():
                     food_item = lookup(food_item_name)
                     energy_day += food_item.energy
                     weight_day += food_item.weight
+                    inventory[food_item.name] += 1
             energy_total += energy_day
             weight_total += weight_day
             rows.append([day.date.strftime('%a %-d %b'), "{:.0f}".format(energy_day.to(kj)), "{:.0f}".format(weight_day), category(energy_day, weight_day)])
@@ -174,6 +177,8 @@ def main():
         rows.append(["Section", "{:.0f}".format(energy_total.to(kj)), "{:.0f}".format(weight_total), category(energy_total, weight_total)])
         print(tabulate(rows, stralign="right"))
         print("\n")
+
+        print(tabulate((key, inventory[key]) for key in sorted(inventory.keys())))
 
     sys.exit(ret)
 
